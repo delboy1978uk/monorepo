@@ -43,7 +43,7 @@ jobs:
           COMPOSER_ROOT_VERSION: "dev-master"
 
       - working-directory: projects/${{ matrix.package_name }}
-        run: vendor/bin/codecept run unit
+        run: vendor/bin/codecept run Unit
 
   packages_split:
     runs-on: ubuntu-latest
