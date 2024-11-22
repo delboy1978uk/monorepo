@@ -56,7 +56,6 @@ class IndexControllerTest extends Unit
 
     public function testIndexAction()
     {
-        $this->assertInstanceOf(\DateTime::class, $this->controller->index(new ServerRequest([], [], new Uri('/')), []));
-//        $this->assertInstanceOf(HtmlResponse::class, $this->controller->index(new ServerRequest([], [], new Uri('/')), []));
+        $this->assertInstanceOf(HtmlResponse::class, $this->controller->index(new ServerRequest([], [], new Uri('/')), []));
     }
 }
