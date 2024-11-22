@@ -35,14 +35,14 @@ jobs:
       - run: composer install --no-progress --ansi
 
       # tell composer to use local package version
-      - run: vendor/bin/monorepo-builder localize-composer-paths packages/${{ matrix.package_name }}/composer.json --ansi
+      - run: vendor/bin/monorepo-builder localize-composer-paths projects/${{ matrix.package_name }}/composer.json --ansi
 
-      - working-directory: packages/${{ matrix.package_name }}
+      - working-directory: projects/${{ matrix.package_name }}
         run: composer update --no-progress --ansi
         env:
           COMPOSER_ROOT_VERSION: "dev-master"
 
-      - working-directory: packages/${{ matrix.package_name }}
+      - working-directory: projects/${{ matrix.package_name }}
         run: vendor/bin/codecept run unit
 
   packages_split:
