@@ -22,7 +22,7 @@ jobs:
           - fakeproject1
           - fakeproject2
 
-    name: Split Tests of ${{ matrix.package_name }}
+    name: Testing ${{ matrix.package_name }} (${{ matrix.php }})
 
     steps:
       - uses: actions/checkout@v2
@@ -44,7 +44,7 @@ jobs:
 
       - working-directory: packages/${{ matrix.package_name }}
         run: vendor/bin/codecept run unit
-        
+
   packages_split:
     runs-on: ubuntu-latest
 
