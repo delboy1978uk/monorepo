@@ -38,7 +38,7 @@ jobs:
       - run: vendor/bin/monorepo-builder localize-composer-paths projects/${{ matrix.package_name }}/composer.json --ansi
 
       - working-directory: projects/${{ matrix.package_name }}
-        run: composer update --no-progress --ansi
+        run: ls -la data/proxies && composer update --no-progress --ansi
         env:
           COMPOSER_ROOT_VERSION: "dev-master"
 
