@@ -31,6 +31,7 @@ jobs:
           - fakeproject2
 
     name: Testing ${{ matrix.package_name }} (${{ matrix.php }})
+    needs: validate_composer_merge
 
     steps:
       - uses: actions/checkout@v2
