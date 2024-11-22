@@ -20,10 +20,10 @@ jobs:
         # define package to repository map
         package:
           -
-            local_path: 'projects/fakeproject1'
+            local_path: 'fakeproject1'
             split_repository: 'fakeproject1'
           -
-            local_path: 'projects/fakeproject2'
+            local_path: 'fakeproject2'
             split_repository: 'fakeproject2'
 
     steps:
@@ -35,7 +35,7 @@ jobs:
         uses: "symplify/monorepo-split-github-action@2.1"
         with:
           # ↓ split "packages/easy-coding-standard" directory
-          package_directory: 'packages/${{ matrix.package.local_path }}'
+          package_directory: 'projects/${{ matrix.package.local_path }}'
 
           # ↓ into https://github.com/symplify/easy-coding-standard repository
           repository_organization: 'delboy1978uk'
@@ -56,7 +56,7 @@ jobs:
           tag: ${GITHUB_REF#refs/tags/}
 
           # ↓ split "packages/easy-coding-standard" directory
-          package_directory: 'packages/${{ matrix.package.local_path }}'
+          package_directory: 'projects/${{ matrix.package.local_path }}'
 
           # ↓ into https://github.com/symplify/easy-coding-standard repository
           repository_organization: 'delboy1978uk'
