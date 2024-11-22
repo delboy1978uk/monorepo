@@ -1,0 +1,30 @@
+name: 'Monorepo Split'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  monorepo_split_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: "symplify/monorepo-split-github-action@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        with:
+          # ↓ split "packages/your-package-name" directory
+          package-directory: 'delboy1978uk/fakeproject1'
+
+          # ↓ into https://github.com/your-organization/your-package-name repository
+          split-repository-organization: 'delboy1978uk'
+          split-repository-name: 'fakeproject1'
+
+          # ↓ the user signed under the split commit
+          user-name: "Derek Stephen McLean"
+          user-email: "delboy1978uk@gmail.com"
