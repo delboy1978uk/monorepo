@@ -34,37 +34,23 @@ jobs:
         if: "!startsWith(github.ref, 'refs/tags/')"
         uses: "danharrin/monorepo-split-github-action@v2.3.0"
         with:
-          # ↓ split "packages/easy-coding-standard" directory
           package_directory: 'projects/${{ matrix.package.local_path }}'
-
-          # ↓ into https://github.com/symplify/easy-coding-standard repository
           repository_organization: 'delboy1978uk'
           repository_name: '${{ matrix.package.split_repository }}'
-
-          # [optional, with "github.com" as default]
-#          repository_host: git.private.com:1234
-
-          # ↓ the user signed under the split commit
+          branch: '${{ github.ref_name }}'
           user_name: "Derek Stephen McLean"
           user_email: "delboy1978uk@gmail.com"
+
 
       # with tag
       -
         if: "startsWith(github.ref, 'refs/tags/')"
         uses: "symplify/monorepo-split-github-action@2.1"
         with:
+          branch: '${{ github.ref_name }}'
           tag: ${GITHUB_REF#refs/tags/}
-
-          # ↓ split "packages/easy-coding-standard" directory
           package_directory: 'projects/${{ matrix.package.local_path }}'
-
-          # ↓ into https://github.com/symplify/easy-coding-standard repository
           repository_organization: 'delboy1978uk'
           repository_name: '${{ matrix.package.split_repository }}'
-
-          # [optional, with "github.com" as default]
-#          repository_host: git.private.com:1234
-
-          # ↓ the user signed under the split commit
           user_name: "Derek Stephen McLean"
           user_email: "delboy1978uk@gmail.com"
