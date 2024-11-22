@@ -1,0 +1,16 @@
+._*
+.~lock.*
+.buildpath
+.DS_Store
+.env
+.idea
+.project
+.settings
+*.dev.php
+error_log
+vendor/*
+c3tmp/*
+tests/_output/*
+data/cache/*
+data/proxies/*
+
