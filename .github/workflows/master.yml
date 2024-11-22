@@ -11,14 +11,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
-  validate_composer_merge:
-    runs-on: ubuntu-latest
-    name: Validate merged JSON
-
-    steps:
-      - name: Validate merged JSON
-        run: ls -la && composer install --no-progress --ansi
-
   split_testing:
     runs-on: ubuntu-latest
 
@@ -31,7 +23,6 @@ jobs:
           - fakeproject2
 
     name: Testing ${{ matrix.package_name }} (${{ matrix.php }})
-    needs: validate_composer_merge
 
     steps:
       - uses: actions/checkout@v2
@@ -42,6 +33,9 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - run: composer install --no-progress --ansi
+
+      - name: Validate merged JSON
+        run: ls -la && composer install --no-progress --ansi
 
       # tell composer to use local package version
       - run: vendor/bin/monorepo-builder localize-composer-paths projects/${{ matrix.package_name }}/composer.json --ansi
