@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Validate merged JSON
-        run: composer install --no-progress --ansi
+        run: ls -la && composer install --no-progress --ansi
 
   split_testing:
     runs-on: ubuntu-latest
