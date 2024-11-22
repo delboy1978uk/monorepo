@@ -47,7 +47,8 @@ jobs:
 
   packages_split:
     runs-on: ubuntu-latest
-
+    needs: split_testing
+    
     strategy:
       fail-fast: false
       matrix:
