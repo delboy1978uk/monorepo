@@ -11,6 +11,14 @@ env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
+  validate_composer_merge:
+    runs-on: ubuntu-latest
+    name: Validate merged JSON
+
+    steps:
+      - name: Validate merged JSON
+        run: composer install --no-progress --ansi
+
   split_testing:
     runs-on: ubuntu-latest
 
