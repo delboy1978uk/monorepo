@@ -1,0 +1,51 @@
+{
+  "name": "boneframework/skeleton",
+  "description": "Bone Framework",
+  "authors": [
+    {
+      "name": "Derek Stephen McLean",
+      "email": "delboy1978uk@gmail.com",
+      "role": "developer"
+    }
+  ],
+  "keywords": [
+    "bone",
+    "framework",
+    "middleware",
+    "psr-7",
+    "psr7",
+    "psr-11",
+    "psr11",
+    "psr-15",
+    "psr15"
+  ],
+  "homepage": "https://github.com/boneframework",
+  "license": "MIT",
+  "require": {
+    "php": "^8.2",
+    "ext-fileinfo": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "boneframework/bone": "^3.11",
+    "delboy1978uk/cdn": "^2.0",
+    "delboy1978uk/image": "^2.1"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "delboy1978uk/dev-tools": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bone\\App\\": "src/App/",
+      "Bone\\Test\\": "tests/unit/",
+      "Fixtures\\": "data/fixtures/"
+    },
+    "classmap": ["data/proxies/"]
+  },
+  "config": {
+    "allow-plugins": {
+      "phpro/grumphp": false
+    }
+  }
+}
