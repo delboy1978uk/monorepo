@@ -11,6 +11,40 @@ env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
+  split_testing:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3']
+        package_name:
+          - fakeproject1
+          - fakeproject2
+
+    name: Split Tests of ${{ matrix.package_name }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - run: composer install --no-progress --ansi
+
+      # tell composer to use local package version
+      - run: vendor/bin/monorepo-builder localize-composer-paths packages/${{ matrix.package_name }}/composer.json --ansi
+
+      - working-directory: packages/${{ matrix.package_name }}
+        run: composer update --no-progress --ansi
+        env:
+          COMPOSER_ROOT_VERSION: "dev-master"
+
+      - working-directory: packages/${{ matrix.package_name }}
+        run: vendor/bin/codecept run unit
+        
   packages_split:
     runs-on: ubuntu-latest
 
