@@ -35,13 +35,14 @@ jobs:
       - run: composer install --no-progress --ansi
 
       - name: Validate merged JSON
-        run: ls -la && composer install --no-progress --ansi
+        run: vendor/bin/monorepo-builder validate
 
-      # tell composer to use local package version
-      - run: vendor/bin/monorepo-builder localize-composer-paths projects/${{ matrix.package_name }}/composer.json --ansi
+      - name: Localise composer paths
+        run: vendor/bin/monorepo-builder localize-composer-paths projects/${{ matrix.package_name }}/composer.json --ansi
 
-      - working-directory: projects/${{ matrix.package_name }}
-        run: ls -la data/proxies && composer update --no-progress --ansi
+      - name:   
+        working-directory: projects/${{ matrix.package_name }}
+        run: composer update --no-progress --ansi
         env:
           COMPOSER_ROOT_VERSION: "dev-master"
 
